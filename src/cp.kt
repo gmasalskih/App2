@@ -1,8 +1,9 @@
 external val cp: dynamic
 external val window: dynamic
 external val Object: dynamic
+external val Rx:dynamic
 
-data class Slide(val name: String, val id: String, val uid: String)
+data class Slide(val name: String, val id: Int, val uid: String)
 data class TEB(val name: String, val varName: String, val slideUID: String)
 data class Item(val name: String, val slideUID: String)
 
@@ -29,7 +30,7 @@ object Data {
                 cp.D[it].hasOwnProperty("lb") -> {
                     slides.add(Slide(
                             cp.D[it].lb.toString(),
-                            cp.D[it].id.toString(),
+                            cp.D[it].id,
                             cp.D[it].mdi.toString().removeSuffix("c")
                     ))
                 }
@@ -65,7 +66,7 @@ fun getSlideID(label: String) = Data.slides.first { it.name == label }.id
 fun getSlideUID(label: String) = Data.slides.first { it.name == label }.uid
 
 @JsName("getSlideNameById")
-fun getSlideNameById(id: String) = Data.slides.first { it.id == id }.name
+fun getSlideNameById(id: Int) = Data.slides.first { it.id == id }.name
 
 @JsName("getSlideNameByUID")
 fun getSlideNameByUID(uid: String) = Data.slides.first { it.uid == uid }.name
@@ -172,5 +173,6 @@ fun getItemsOnSlide(slideName: String) = Data.items.filter { getSlideUID(slideNa
 
 @JsName("getTEBsOnSlide")
 fun getTEBsOnSlide(slideName: String) = Data.TEBs.filter { getSlideUID(slideName) == it.slideUID }.toList()
+
 
 

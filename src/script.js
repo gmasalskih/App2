@@ -216,10 +216,63 @@ quest2 = new Quest("Второе задание");
 quest3 = new Quest("Третье задание");
 
 
-
-DDD1=Rx.Observable.create(function (obs) {
-    window.cpAPIEventEmitter.addEventListener("CPAPI_INTERACTIVEITEMSUBMIT", function (a) {
-        obs.next(a);
+DDD1 = Rx.Observable.create(function (obs) {
+    window.cpAPIEventEmitter.addEventListener("CPAPI_INTERACTIVEITEMSUBMIT", function (event) {
+        obs.next(event);
     });
-}).filter(ev => ev.cpData.issuccess);
-DDD1.subscribe(x => console.log(x.cpData.itemname));
+});
+DDD1.subscribe(x => console.log(x));
+
+DDD1 = Rx.Observable.create(function (obs) {
+    window.cpAPIEventEmitter.addEventListener("CPAPI_SLIDEENTER", function (event) {
+        for (var i = 0; i < App.Data.slides.toArray().length; i++) {
+            if (App.Data.slides.toArray()[i].id == event.cpData.id) {
+                obs.next(App.Data.slides.toArray()[i]);
+                break;
+            }
+        }
+    });
+});
+
+DDD1.subscribe(x => console.log(x));
+
+DDD1 = Rx.Observable.create(function (obs) {
+    window.cpAPIEventEmitter.addEventListener("CPAPI_VARIABLEVALUECHANGED", function (event) {
+        obs.next(event);
+    }, "ssss");
+});
+
+DDD1.subscribe(x => console.log(x));
+
+
+DDD1 = Rx.Observable.create(function (obs) {
+    window.cpAPIEventEmitter.addEventListener("CPAPI_SLIDEEXIT", function (event) {
+        for (var i = 0; i < App.Data.slides.toArray().length; i++) {
+            if (App.Data.slides.toArray()[i].id == event.cpData.id) {
+                obs.next(App.Data.slides.toArray()[i]);
+                break;
+            }
+        }
+    });
+});
+
+DDD1.subscribe(x => console.log(x));
+
+function cpev (cp) {
+    DDD1 = Rx.Observable.create(function (obs) {
+        window.cpAPIEventEmitter.addEventListener(cp, function (event) {
+            obs.next(event);
+        });
+    });
+    DDD1.subscribe(x => console.log(x));
+}
+
+DDD1 = Rx.Observable.create(function (obs) {
+    window.cpAPIEventEmitter.addEventListener("CPAPI_VARIABLEVALUECHANGED", function (event) {
+        obs.next(event);
+    });
+});
+DDD1.subscribe(x => console.log(x));
+
+
+
