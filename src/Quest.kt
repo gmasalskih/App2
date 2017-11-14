@@ -1,18 +1,24 @@
 external val QuestJson: dynamic
 
+object Init{
+    var suffixSmartShape="SS"
+    var booleanTrueMarker ="true"
+    var varNameUserName = "__________userName__________"
+    var defaultUserName = "Константин Александрович"
+    var varNameQuestJson = "QuestJson"
+}
+
 interface QuestItem {
     val name: String
     fun isCorrect(): Boolean
-    fun check() {
-        if (isCorrect()) changeState("${name}SS", getAllState("${name}SS").first())
-        else changeState("${name}SS", getAllState("${name}SS").last())
-    }
+    fun check() = if (isCorrect()) changeState("$name${Init.suffixSmartShape}", getAllState("$name${Init.suffixSmartShape}").first())
+    else changeState("$name${Init.suffixSmartShape}", getAllState("$name${Init.suffixSmartShape}").last())
 }
 
 object Quest {
 
     var listQuestSlide: List<QuestSlide>
-    val mapQuestJson = jsonToMap(QuestJson)
+    val mapQuestJson = jsonToMap(window[Init.varNameQuestJson])
 
     init {
         listQuestSlide = Data.slides
@@ -34,7 +40,7 @@ object Quest {
 
     data class QuestSlide(val name: String, private val listQuestItem: List<QuestItem>) {
 
-        private val isCorrect
+        private val isCorrect:Boolean
         get() = listQuestItem.filter { it.isCorrect() }.count() == listQuestItem.size
 
         fun isCorrect(): Boolean {
@@ -62,7 +68,7 @@ object Quest {
     data class QuestClickBox(private val item: Item, private val regex: String) : QuestItem {
 
         override val name = item.name
-        private var isCorrect = regex == "true"
+        private var isCorrect = regex == Init.booleanTrueMarker
         override fun isCorrect() = isCorrect
 
         init {

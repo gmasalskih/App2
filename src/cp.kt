@@ -14,8 +14,8 @@ object Data {
     val TEBs = ArrayList<TEB>()
 
     init {
-        window["__________userName__________"] = when {
-            window.cpQuizInfoStudentName.toString() == "" -> "Константин Александрович"
+        window[Init.varNameUserName] = when {
+            window.cpQuizInfoStudentName.toString() == "" -> Init.defaultUserName
             else -> {
                 window.cpQuizInfoStudentName.toString()
                         .trim()
