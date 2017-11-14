@@ -9,9 +9,9 @@ data class Item(val name: String, val slideUID: String)
 
 object Data {
 
-    var slides = ArrayList<Slide>()
-    var items = ArrayList<Item>()
-    var TEBs = ArrayList<TEB>()
+    val slides = ArrayList<Slide>()
+    val items = ArrayList<Item>()
+    val TEBs = ArrayList<TEB>()
 
     init {
         window["__________userName__________"] = when {
@@ -30,7 +30,7 @@ object Data {
                 cp.D[it].hasOwnProperty("lb") -> {
                     slides.add(Slide(
                             cp.D[it].lb.toString(),
-                            cp.D[it].id,
+                            cp.D[it].id.toString().toInt(),
                             cp.D[it].mdi.toString().removeSuffix("c")
                     ))
                 }
@@ -99,8 +99,8 @@ fun showAll(label: String) {
             .forEach { cp.show(it.name) }
 }
 
-@JsName("getState")
-fun getState(label: String) = cp.getCurrentStateNameForSlideItem(label).toString()
+@JsName("getCurrentItemState")
+fun getCurrentItemState(label: String) = cp.getCurrentStateNameForSlideItem(label).toString()
 
 @JsName("getAllState")
 fun getAllState(label: String): ArrayList<String> {

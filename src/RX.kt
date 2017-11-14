@@ -16,59 +16,59 @@ external class SlideExit {
 }
 
 external class InteractiveItemSubmit {
-    val frameNumber:Int
-    val includedInQuiz:Boolean
-    val issuccess:Boolean
+    val frameNumber: Int
+    val includedInQuiz: Boolean
+    val issuccess: Boolean
     val itemname: String
-    val slideNumber:Int
+    val slideNumber: Int
 }
 
 external class QuestionSkip {
-    val correctAnswer:String
-    val infiniteAttempts:Boolean
-    val interactionID:String
-    val interactionType:String
-    val objectiveID:String
-    val questionAnswered:Boolean
-    val questionAnsweredCorrectly:Boolean
-    val questionAttempts:Int
-    val questionMaxAttempts:Int
-    val questionMaxScore:Int
-    val questionNumber:Int
-    val questionScore:Int
-    val questionType:String
-    val quizName:String
-    val reportAnswers:Boolean
-    val selectedAnswer:String
-    val slideNumber:Int
-    val weighting:Int
+    val correctAnswer: String
+    val infiniteAttempts: Boolean
+    val interactionID: String
+    val interactionType: String
+    val objectiveID: String
+    val questionAnswered: Boolean
+    val questionAnsweredCorrectly: Boolean
+    val questionAttempts: Int
+    val questionMaxAttempts: Int
+    val questionMaxScore: Int
+    val questionNumber: Int
+    val questionScore: Int
+    val questionType: String
+    val quizName: String
+    val reportAnswers: Boolean
+    val selectedAnswer: String
+    val slideNumber: Int
+    val weighting: Int
 }
 
 external class QuestionSubmit {
-    val correctAnswer:String
-    val infiniteAttempts:Boolean
-    val interactionID:String
-    val interactionType:String
-    val objectiveID:String
-    val questionAnswered:Boolean
-    val questionAnsweredCorrectly:Boolean
-    val questionAttempts:Int
-    val questionMaxAttempts:Int
-    val questionMaxScore:Int
-    val questionNumber:Int
-    val questionScore:Int
-    val questionType:String
-    val quizName:String
-    val reportAnswers:Boolean
-    val selectedAnswer:String
-    val slideNumber:Int
-    val weighting:Int
+    val correctAnswer: String
+    val infiniteAttempts: Boolean
+    val interactionID: String
+    val interactionType: String
+    val objectiveID: String
+    val questionAnswered: Boolean
+    val questionAnsweredCorrectly: Boolean
+    val questionAttempts: Int
+    val questionMaxAttempts: Int
+    val questionMaxScore: Int
+    val questionNumber: Int
+    val questionScore: Int
+    val questionType: String
+    val quizName: String
+    val reportAnswers: Boolean
+    val selectedAnswer: String
+    val slideNumber: Int
+    val weighting: Int
 }
 
 external class VariableValueChanged {
     val varName: String
-    val oldVal: dynamic
-    val newVal: dynamic
+    val oldVal: String
+    val newVal: String
 }
 
 enum class DataCpEvent(val value: String) {
@@ -99,13 +99,13 @@ object CpEvent {
     val movieStop: CpObserver<Unit>
     val questionSkip: CpObserver<QuestionSkip>
     val questionSubmit: CpObserver<QuestionSubmit>
-    private val variableValueChanged = HashMap<String,CpObserver<VariableValueChanged>>()
+    private val variableValueChanged = HashMap<String, CpObserver<VariableValueChanged>>()
 
     @JsName("getVariableValueChanged")
-    fun getVariableValueChanged(varName:String):CpObserver<VariableValueChanged>{
-        return if (variableValueChanged.containsKey(varName)){
+    fun getVariableValueChanged(varName: String): CpObserver<VariableValueChanged> {
+        return if (variableValueChanged.containsKey(varName)) {
             variableValueChanged[varName]!!
-        }else{
+        } else {
             variableValueChanged.put(varName, getEvent(DataCpEvent.VariableValueChanged, varName))
             variableValueChanged[varName]!!
         }
