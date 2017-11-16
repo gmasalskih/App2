@@ -38,7 +38,7 @@ object Quest {
                 }.toList()
     }
 
-    data class QuestSlide(val name: String, private val listQuestItem: List<QuestItem>) {
+    data class QuestSlide(val name: String, val listQuestItem: List<QuestItem>) {
 
         private val isCorrect:Boolean
         get() = listQuestItem.filter { it.isCorrect() }.count() == listQuestItem.size
@@ -49,7 +49,7 @@ object Quest {
         }
     }
 
-    data class QuestTEB(private val teb: TEB, private val regex: String) : QuestItem {
+    data class QuestTEB(val teb: TEB, val regex: String) : QuestItem {
         override val name = teb.name
         private var isCorrect: Boolean = false
         override fun isCorrect() = isCorrect
@@ -60,12 +60,12 @@ object Quest {
 
         private fun change(itemEvent: VariableValueChanged) {
             if (itemEvent.varName == teb.varName) {
-                isCorrect = itemEvent.newVal.matches(Regex(regex))
+                isCorrect = itemEvent.newVal.toString().matches(Regex(regex))
             }
         }
     }
 
-    data class QuestClickBox(private val item: Item, private val regex: String) : QuestItem {
+    data class QuestClickBox(val item: Item, val regex: String) : QuestItem {
 
         override val name = item.name
         private var isCorrect = regex == Init.booleanTrueMarker

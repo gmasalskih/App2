@@ -67,8 +67,8 @@ external class QuestionSubmit {
 
 external class VariableValueChanged {
     val varName: String
-    val oldVal: String
-    val newVal: String
+    val oldVal: dynamic
+    val newVal: dynamic
 }
 
 enum class DataCpEvent(val value: String) {
@@ -125,7 +125,8 @@ object CpEvent {
         questionSubmit = getEvent(DataCpEvent.QuestionSubmit)
     }
 
-    private fun <T> getEvent(dataCpEvent: DataCpEvent, itemName: String = ""): CpObserver<T> {
+    @JsName("getEvent")
+    fun <T> getEvent(dataCpEvent: DataCpEvent, itemName: String = ""): CpObserver<T> {
         return Rx.Observable.create(fun(obs: dynamic) {
             window.cpAPIEventEmitter.addEventListener(dataCpEvent.value, fun(event: dynamic) {
                 obs.next(event.Data)
