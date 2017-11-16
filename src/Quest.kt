@@ -51,7 +51,7 @@ object Quest {
 
     data class QuestTEB(val teb: TEB, val regex: String) : QuestItem {
         override val name = teb.name
-        private var isCorrect: Boolean = false
+        private var isCorrect: Boolean = window[teb.varName].toString().matches(Regex(regex))
         override fun isCorrect() = isCorrect
 
         init {
