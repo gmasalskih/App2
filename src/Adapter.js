@@ -191,6 +191,9 @@ App = {
                 }, filter: function (fn) {
                 }
             };
+        },
+        getEvent: function (dataCpEvent, itemName) {
+            
         }
     },
     DataCpEvent: {

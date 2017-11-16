@@ -1,8 +1,8 @@
 external val QuestJson: dynamic
 
-object Init{
-    var suffixSmartShape="SS"
-    var booleanTrueMarker ="true"
+object Init {
+    var suffixSmartShape = "SS"
+    var booleanTrueMarker = "true"
     var varNameUserName = "__________userName__________"
     var defaultUserName = "Константин Александрович"
     var varNameQuestJson = "QuestJson"
@@ -40,8 +40,8 @@ object Quest {
 
     data class QuestSlide(val name: String, val listQuestItem: List<QuestItem>) {
 
-        private val isCorrect:Boolean
-        get() = listQuestItem.filter { it.isCorrect() }.count() == listQuestItem.size
+        private val isCorrect: Boolean
+            get() = listQuestItem.filter { it.isCorrect() }.count() == listQuestItem.size
 
         fun isCorrect(): Boolean {
             listQuestItem.forEach { it.check() }
