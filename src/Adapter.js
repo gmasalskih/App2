@@ -1,21 +1,4 @@
 App = {
-    Data: {
-        slides: {
-            toArray: function () {
-                return [{name: "", id: "", uid: ""}];
-            }
-        },
-        items: {
-            toArray: function () {
-                return [{name: "", slideUID: ""}];
-            }
-        },
-        TEBs: {
-            toArray: function () {
-                return [{name: "", varName: "", slideUID: ""}];
-            }
-        }
-    },
     goToSlideByLabel: function (label) {
     },
     goToNextSlide:function () {
@@ -105,6 +88,23 @@ App = {
     },
     getTEBsOnSlide: function (slideName) {
 
+    },
+    Data: {
+        slides: {
+            toArray: function () {
+                return [{name: "", id: "", uid: ""}];
+            }
+        },
+        items: {
+            toArray: function () {
+                return [{name: "", slideUID: ""}];
+            }
+        },
+        TEBs: {
+            toArray: function () {
+                return [{name: "", varName: "", slideUID: ""}];
+            }
+        }
     },
     Init: {
         suffixSmartShape: "SS",
