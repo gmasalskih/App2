@@ -18,6 +18,10 @@ App = {
     },
     goToSlideByLabel: function (label) {
     },
+    goToNextSlide:function () {
+    },
+    goToPreviousSlide:function () {
+    },
     getSlideID: function (label) {
 
     },
