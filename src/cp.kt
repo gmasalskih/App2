@@ -59,6 +59,16 @@ fun goToSlideByLabel(label: String) {
     window.cpCmndGotoSlideByUIDAndResume = getSlideID(label)
 }
 
+@JsName("goToNextSlide")
+fun goToNextSlide(){
+    cp.goToNextSlide()
+}
+
+@JsName("goToPreviousSlide")
+fun goToPreviousSlide(){
+    cp.goToPreviousSlide()
+}
+
 @JsName("getSlideID")
 fun getSlideID(label: String) = Data.slides.first { it.name == label }.id
 
@@ -115,6 +125,16 @@ fun getAllState(label: String): ArrayList<String> {
 @JsName("changeState")
 fun changeState(label: String, state: String) {
     cp.changeState(label, state)
+}
+
+@JsName("changeToNextState")
+fun changeToNextState(label:String){
+    cp.goToNextState(label)
+}
+
+@JsName("changeToPreviousState")
+fun changeToPreviousState(label:String){
+    cp.goToPreviousState(label)
 }
 
 @JsName("changeStateAll")
