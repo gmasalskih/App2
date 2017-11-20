@@ -1,21 +1,4 @@
 App = {
-    Data: {
-        slides: {
-            toArray: function () {
-                return [{name: "", id: "", uid: ""}];
-            }
-        },
-        items: {
-            toArray: function () {
-                return [{name: "", slideUID: ""}];
-            }
-        },
-        TEBs: {
-            toArray: function () {
-                return [{name: "", varName: "", slideUID: ""}];
-            }
-        }
-    },
     goToSlideByLabel: function (label) {
     },
     getSlideID: function (label) {
@@ -54,7 +37,7 @@ App = {
     getAllState: function (label) {
 
     },
-    changeState: function (label) {
+    changeState: function (label, state) {
 
     },
     changeStateAll: function (label, state) {
@@ -95,6 +78,23 @@ App = {
     },
     getTEBsOnSlide: function (slideName) {
 
+    },
+    Data: {
+        slides: {
+            toArray: function () {
+                return [{name: "", id: "", uid: ""}];
+            }
+        },
+        items: {
+            toArray: function () {
+                return [{name: "", slideUID: ""}];
+            }
+        },
+        TEBs: {
+            toArray: function () {
+                return [{name: "", varName: "", slideUID: ""}];
+            }
+        }
     },
     Init: {
         suffixSmartShape: "SS",
@@ -147,7 +147,6 @@ App = {
             subscribe: function (fn) {
             },
             filter: function (fn) {
-
             }
         },
         movieResume: {
