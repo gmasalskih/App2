@@ -1,10 +1,10 @@
-object SCORM{
+object SCORM {
     @JsName("getValue")
-    fun getValue(param: String)=(window.SCORM2004_objAPI.GetValue(param)).toString()
+    fun getValue(param: String) = (window.SCORM2004_objAPI.GetValue(param)).toString()
 
     @JsName("setValue")
-    fun setValue(param: String, value: Any){
-        when(value){
+    fun setValue(param: String, value: Any) {
+        when (value) {
             is CharSequence -> window.SCORM2004_objAPI.SetValue(param, value)
             is Number -> window.SCORM2004_objAPI.SetValue(param, value)
             is Boolean -> window.SCORM2004_objAPI.SetValue(param, value)
@@ -13,7 +13,7 @@ object SCORM{
     }
 }
 
-enum class DataSCORM(val value:String){
+enum class DataSCORM(val value: String) {
     Version("cmi._version"),
     CommentsFromLearnerChildren("cmi.comments_from_learner._children"),
     CommentsFromLearnerCount("cmi.comments_from_learner._count"),

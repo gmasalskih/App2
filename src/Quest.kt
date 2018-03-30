@@ -51,19 +51,9 @@ object Quest {
 
     data class QuestTEB(val teb: TEB, val regex: String) : QuestItem {
         override val name = teb.name
-        private var isCorrect: Boolean = window[teb.varName].toString().matches(Regex(regex))
-        override fun isCorrect() = isCorrect
-
-        init {
-            CpEvent.getVariableValueChanged(teb.varName).subscribe { change(it) }
-        }
-
-        private fun change(itemEvent: VariableValueChanged) {
-            if (itemEvent.varName == teb.varName) {
-                isCorrect = itemEvent.newVal.toString().matches(Regex(regex))
-            }
-        }
+        override fun isCorrect() = getValueTEB(name).trim().matches(Regex(regex))
     }
+
 
     data class QuestClickBox(val item: Item, val regex: String) : QuestItem {
 
